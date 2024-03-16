@@ -1,1 +1,143 @@
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '@angular/material' as mat;
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+// Sets custom palettes
+$indigo-main-palette: (
+  50: #efe7fa,
+  100: #d4c3f2,
+  200: #b89bea,
+  300: #9b71e3,
+  400: #8350dc,
+  500: #6b2ed5,
+  600: #5F29CF,
+  700: #5120c6,
+  800: #4119c0,
+  900: #1f06b6,
+  A100: #c2e4ff,
+  A200: #addcff,
+  A400: #1f9eff,
+  A700: #00518f,
+  contrast: (
+    50: rgba(black, 0.87),
+    100: rgba(black, 0.87),
+    200: rgba(black, 0.87),
+    300: rgba(black, 0.87),
+    400: rgba(black, 0.87),
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+    A100: rgba(black, 0.87),
+    A200: rgba(black, 0.87),
+    A400: white,
+    A700: white,
+  )
+);
+
+$green-ctb-palette: (
+  50: #f6f8e5,
+  100: #e9edbe,
+  200: #dae294,
+  300: #CCD66B,
+  400: #c1ce4c,
+  500: #b7c62a,
+  600: #abb525,
+  700: #9aa01e,
+  800: #8a8917,
+  900: #6e650a,
+  A100: #c2e4ff,
+  A200: #addcff,
+  A400: #1f9eff,
+  A700: #00518f,
+  contrast: (
+    50: rgba(black, 0.87),
+    100: rgba(black, 0.87),
+    200: rgba(black, 0.87),
+    300: rgba(black, 0.87),
+    400: rgba(black, 0.87),
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+    A100: rgba(black, 0.87),
+    A200: rgba(black, 0.87),
+    A400: white,
+    A700: white,
+  )
+);
+
+$heart-ctb-palette: (
+  50: #fdecf1,
+  100: #facfd9,
+  200: #dae294,
+  300: #e07685,
+  400: #ec5569,
+  500: #f34354,
+  600: #e43b51,
+  700: #d1324a,
+  800: #c42c42,
+  900: #b42237,
+  A100: #c2e4ff,
+  A200: #addcff,
+  A400: #1f9eff,
+  A700: #00518f,
+  contrast: (
+    50: rgba(black, 0.87),
+    100: rgba(black, 0.87),
+    200: rgba(black, 0.87),
+    300: rgba(black, 0.87),
+    400: rgba(black, 0.87),
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+    A100: rgba(black, 0.87),
+    A200: rgba(black, 0.87),
+    A400: white,
+    A700: white,
+  )
+);
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$web-primary: mat.define-palette($indigo-main-palette, 700, 300, 900);
+$web-accent: mat.define-palette($green-ctb-palette, 300, 100, 500);
+
+// The warn palette is optional (defaults to red).
+$web-warn: mat.define-palette($heart-ctb-palette);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$web-theme: mat.define-light-theme((
+  color: (
+    primary: $web-primary,
+    accent: $web-accent,
+    warn: $web-warn,
+  ),
+  typography: mat.define-typography-config(),
+  density: 0
+));
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.all-component-themes($web-theme);
+
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+// Import grid system
+@import './grid.scss';

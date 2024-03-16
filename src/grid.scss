@@ -1,0 +1,114 @@
+/**
+* grid system
+**/
+
+/**
+* Columns definition
+**/
+$cols: 12;
+
+/**
+* Breakpoints definition
+**/
+$xs: '0';
+$sm: '36em';
+$md: '48em';
+$lg: '62em';
+$xl: '75em';
+
+
+/**
+* Mixins
+**/
+@mixin col-basis($basis) {
+    grid-column: span $basis;
+  }
+  
+  @mixin col-x-list($col-name) {
+    @for $i from 1 through $cols {
+        &.#{$col-name}#{$i} {
+          @include col-basis($i);
+        }
+    }
+  }
+
+  /**
+  * Set grid system
+  **/
+  @media screen and (min-width: $xs) {
+    .container {
+      width: 100%;
+      height: 100vh;
+    }
+  }
+  
+  @media screen and (min-width: $sm) {
+    .container {
+      width: 100%;
+    }
+  }
+  
+  @media screen and (min-width: $md) {
+    .container {
+      width: 62em;
+      margin: 0 auto;
+  
+      &.fluid {
+        width: 100%;
+        margin: 0;
+      }
+    }
+  }
+  
+  @media screen and (min-width: $lg) {
+    .container {
+      width: 75em;
+      margin: 0 auto;
+      &.fluid {
+        width: 100%;
+        margin: 0;
+      }
+    }
+  }
+  
+  .row {
+    display: grid;
+    grid-template-columns: repeat($cols, 1fr);
+    grid-gap: .5em;
+  
+    .col {
+      &.xs-hidden {
+        display: none;
+      }
+      @include col-x-list("xs");
+      /** .row .col.xs1 ... .row .col.xs12 **/
+  
+      @media screen and (min-width: $sm) {
+        &.sm-hidden {
+          display: none;
+        }
+        @include col-x-list("sm");
+      }
+  
+      @media screen and (min-width: $md) {
+        &.md-hidden {
+          display: none;
+        }
+        @include col-x-list("md");
+      }
+  
+      @media screen and (min-width: $lg) {
+        &.lg-hidden {
+        display: none;
+        }
+        @include col-x-list("lg");
+      }
+  
+      @media screen and (min-width: $xl) {
+        &.xl-hidden {
+          display: none;
+        }
+        @include col-x-list("xl");
+      }
+    }
+  } 
