@@ -1,8 +1,13 @@
 <div class="container fluid">
   <div class="row">
-      <app-desktop-header class="col lg12 xs-hidden"></app-desktop-header>
-    
-      <app-mobile-header class="col xs12 lg-hidden"></app-mobile-header>
+    <div class="col lg12" hide-below="md">
+      <app-desktop-header></app-desktop-header>
+    </div>
+      
+    <div class="col xs12" hide-above="md">
+      <app-mobile-header></app-mobile-header>
+    </div>
+      
     
     <main class="col xs12">
       <router-outlet></router-outlet>

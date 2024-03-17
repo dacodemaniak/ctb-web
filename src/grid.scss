@@ -11,104 +11,143 @@ $cols: 12;
 * Breakpoints definition
 **/
 $xs: '0';
-$sm: '36em';
-$md: '48em';
-$lg: '62em';
-$xl: '75em';
-
+$sm: '36em'; // about 576px
+$md: '48em'; // about 768px
+$lg: '62em'; // about 992px
+$xl: '75em'; // about 1200px
 
 /**
 * Mixins
 **/
 @mixin col-basis($basis) {
-    grid-column: span $basis;
-  }
-  
-  @mixin col-x-list($col-name) {
-    @for $i from 1 through $cols {
-        &.#{$col-name}#{$i} {
-          @include col-basis($i);
-        }
+  grid-column: span $basis;
+}
+
+@mixin col-x-list($col-name) {
+  @for $i from 1 through $cols {
+    &.#{$col-name}#{$i} {
+      @include col-basis($i);
     }
+  }
+}
+
+/**
+* Hide if breakpoint <= to one of these xs, sm, md, lg, xl
+**/
+@mixin hide-below($breakpoint) {
+  @if $breakpoint == xs {
+    @media screen and (max-width: ($xs - 1)) {
+      display: none;
+    }
+  } @else if $breakpoint == sm {
+    @media screen and (max-width: ($sm - 1)) {
+      display: none;
+    }
+  } @else if $breakpoint == md {
+    @media screen and (max-width: ($md - 1)) {
+      display: none;
+    }
+  } @else if $breakpoint == lg {
+    @media screen and (max-width: ($lg - 1)) {
+      display: none;
+    }
+  } @else if $breakpoint == xl {
+    @media screen and (max-width: ($xl - 1)) {
+      display: none;
+    }
+  }
+}
+
+/**
+* Hiden item if device width above of these xs, sm, md, lg, xl
+**/
+@mixin hide-above($breakpoint) {
+  @if $breakpoint == xs {
+    @media screen and (min-width: $xs) {
+      display: none;
+    }
+  } @else if $breakpoint == sm {
+    @media screen and (min-width: $sm) {
+      display: none;
+    }
+  } @else if $breakpoint == md {
+    @media screen and (min-width: $md) {
+      display: none;
+    }
+  } @else if $breakpoint == lg {
+    @media screen and (min-width: $lg) {
+      display: none;
+    }
+  } @else if $breakpoint == xl {
+    @media screen and (min-width: $xl) {
+      display: none;
+    }
+  }
+}
+
+
+/**
+* Set grid system
+**/
+@media screen and (min-width: $xs) {
+  .container {
+    width: 100%;
+    height: 100vh;
+  }
+}
+
+@media screen and (min-width: $sm) {
+  .container {
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: $md) {
+  .container {
+    width: 62em;
+    margin: 0 auto;
+
+    &.fluid {
+      width: 100%;
+      margin: 0;
+    }
+  }
+}
+
+@media screen and (min-width: $lg) {
+  .container {
+    width: 75em;
+    margin: 0 auto;
+    &.fluid {
+      width: 100%;
+      margin: 0;
+    }
+  }
+}
+
+.row {
+  display: grid;
+  grid-template-columns: repeat($cols, 1fr);
+  grid-gap: .5em;
+}
+
+.col {
+  @include col-x-list("xs");
+  /** .row .col.xs1 ... .row .col.xs12 **/
+
+  @media screen and (min-width: $sm) {
+    @include col-x-list("sm");
   }
 
-  /**
-  * Set grid system
-  **/
-  @media screen and (min-width: $xs) {
-    .container {
-      width: 100%;
-      height: 100vh;
-    }
-  }
-  
-  @media screen and (min-width: $sm) {
-    .container {
-      width: 100%;
-    }
-  }
-  
   @media screen and (min-width: $md) {
-    .container {
-      width: 62em;
-      margin: 0 auto;
-  
-      &.fluid {
-        width: 100%;
-        margin: 0;
-      }
-    }
+    @include col-x-list("md");
   }
-  
+
   @media screen and (min-width: $lg) {
-    .container {
-      width: 75em;
-      margin: 0 auto;
-      &.fluid {
-        width: 100%;
-        margin: 0;
-      }
-    }
+    @include col-x-list("lg");
   }
-  
-  .row {
-    display: grid;
-    grid-template-columns: repeat($cols, 1fr);
-    grid-gap: .5em;
-  
-    .col {
-      &.xs-hidden {
-        display: none;
-      }
-      @include col-x-list("xs");
-      /** .row .col.xs1 ... .row .col.xs12 **/
-  
-      @media screen and (min-width: $sm) {
-        &.sm-hidden {
-          display: none;
-        }
-        @include col-x-list("sm");
-      }
-  
-      @media screen and (min-width: $md) {
-        &.md-hidden {
-          display: none;
-        }
-        @include col-x-list("md");
-      }
-  
-      @media screen and (min-width: $lg) {
-        &.lg-hidden {
-        display: none;
-        }
-        @include col-x-list("lg");
-      }
-  
-      @media screen and (min-width: $xl) {
-        &.xl-hidden {
-          display: none;
-        }
-        @include col-x-list("xl");
-      }
-    }
-  } 
+
+  @media screen and (min-width: $xl) {
+    @include col-x-list("xl");
+  }
+}
