@@ -10,18 +10,25 @@ $cols: 12;
 /**
 * Breakpoints definition
 **/
-$em-xs: '0';
-$em-sm: '36em'; // about 576px
-$em-md: '48em'; // about 768px
-$em-lg: '62em'; // about 992px
-$em-xl: '75em'; // about 1200px
+$em-xs: 0;
+$em-sm: 36em; // about 576px
+$em-md: 48em; // about 768px
+$em-lg: 62em; // about 992px
+$em-xl: 75em; // about 1200px
 
-$xs: $em-xs * 16;
-$sm: $em-sm * 16;
-$md: $em-md * 16;
-$lg: $em-lg * 16;
-$xl: $em-xl * 16;
+$xs: #{$em-xs * 16};
+$sm: #{$em-sm * 16};
+$md: #{$em-md * 16};
+$lg: #{$em-lg * 16};
+$xl: #{$em-xl * 16};
 
+$breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px
+);
 
 /**
 * Mixins
@@ -39,56 +46,32 @@ $xl: $em-xl * 16;
 }
 
 /**
-* Hide if breakpoint <= to one of these xs, sm, md, lg, xl
-**/
-@mixin hide-below($breakpoint) {
-  @if $breakpoint == xs {
-    @media screen and (max-width: #{$xs - 1}) {
+* Loop over breakpoints to build placeholders below and above specific
+*/
+@each $breakpoint, $value in $breakpoints {
+  %hide-below-#{$breakpoint} {
+    @media screen and (max-width: #{map-get($breakpoints, $breakpoint) - 1}) {
       display: none;
     }
-  } @else if $breakpoint == sm {
-    @media screen and (max-width: #{$sm - 1}) {
-      display: none;
-    }
-  } @else if $breakpoint == md {
-    @media screen and (max-width: #{$md - 1}) {
-      display: none;
-    }
-  } @else if $breakpoint == lg {
-    @media screen and (max-width: #{$lg - 1}) {
-      display: none;
-    }
-  } @else if $breakpoint == xl {
-    @media screen and (max-width: #{$xl - 1}) {
+  }
+
+  %hide-above-#{$breakpoint} {
+    @media screen and (min-width: #{$value}) {
       display: none;
     }
   }
 }
 
 /**
-* Hiden item if device width above of these xs, sm, md, lg, xl
+* Loop over breakpoints to build specific classes
 **/
-@mixin hide-above($breakpoint) {
-  @if $breakpoint == xs {
-    @media screen and (min-width: $xs) {
-      display: none;
-    }
-  } @else if $breakpoint == sm {
-    @media screen and (min-width: $sm) {
-      display: none;
-    }
-  } @else if $breakpoint == md {
-    @media screen and (min-width: $md) {
-      display: none;
-    }
-  } @else if $breakpoint == lg {
-    @media screen and (min-width: $lg) {
-      display: none;
-    }
-  } @else if $breakpoint == xl {
-    @media screen and (min-width: $xl) {
-      display: none;
-    }
+@each $breakpoint, $value in $breakpoints {
+  .hide-below-#{$breakpoint} {
+    @extend %hide-below-#{$breakpoint};
+  }
+
+  .hide-above-#{$breakpoint} {
+    @extend %hide-above-#{$breakpoint};
   }
 }
 
