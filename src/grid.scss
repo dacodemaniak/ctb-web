@@ -10,11 +10,18 @@ $cols: 12;
 /**
 * Breakpoints definition
 **/
-$xs: '0';
-$sm: '36em'; // about 576px
-$md: '48em'; // about 768px
-$lg: '62em'; // about 992px
-$xl: '75em'; // about 1200px
+$em-xs: '0';
+$em-sm: '36em'; // about 576px
+$em-md: '48em'; // about 768px
+$em-lg: '62em'; // about 992px
+$em-xl: '75em'; // about 1200px
+
+$xs: $em-xs * 16;
+$sm: $em-sm * 16;
+$md: $em-md * 16;
+$lg: $em-lg * 16;
+$xl: $em-xl * 16;
+
 
 /**
 * Mixins
@@ -36,23 +43,23 @@ $xl: '75em'; // about 1200px
 **/
 @mixin hide-below($breakpoint) {
   @if $breakpoint == xs {
-    @media screen and (max-width: ($xs - 1)) {
+    @media screen and (max-width: #{$xs - 1}) {
       display: none;
     }
   } @else if $breakpoint == sm {
-    @media screen and (max-width: ($sm - 1)) {
+    @media screen and (max-width: #{$sm - 1}) {
       display: none;
     }
   } @else if $breakpoint == md {
-    @media screen and (max-width: ($md - 1)) {
+    @media screen and (max-width: #{$md - 1}) {
       display: none;
     }
   } @else if $breakpoint == lg {
-    @media screen and (max-width: ($lg - 1)) {
+    @media screen and (max-width: #{$lg - 1}) {
       display: none;
     }
   } @else if $breakpoint == xl {
-    @media screen and (max-width: ($xl - 1)) {
+    @media screen and (max-width: #{$xl - 1}) {
       display: none;
     }
   }
@@ -82,6 +89,39 @@ $xl: '75em'; // about 1200px
     @media screen and (min-width: $xl) {
       display: none;
     }
+  }
+}
+
+/**
+* Helper classes
+**/
+.hidden-xs {
+  @media screen and (max-width: $xs) {
+    display: none;
+  }
+}
+
+.hidden-sm {
+  @media screen and (min-width: #{$sm - 1}) and (max-width: #{$md - 1}) {
+    display: none;
+  }
+}
+
+.hidden-md {
+  @media screen and (min-width: #{$md - 1}) and (max-width: #{$lg - 1}) {
+    display: none;
+  }
+}
+
+.hidden-lg {
+  @media screen and (min-width: #{$lg - 1}) and (max-width: #{$xl - 1}) {
+    display: none;
+  }
+}
+
+.hidden-xl {
+  @media screen and (min-width: $xl) {
+    display: none;
   }
 }
 
