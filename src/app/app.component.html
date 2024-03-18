@@ -1,15 +1,14 @@
 <div class="container fluid">
   <div class="row">
 
-      <app-desktop-header class="col xs12  hide-below-md"></app-desktop-header>
+    <app-desktop-header class="col xs12  hide-below-md"></app-desktop-header>
+    <app-mobile-header class="col xs12 hide-above-md"></app-mobile-header>
 
-      <app-mobile-header class="col xs12 hide-above-md"></app-mobile-header>
-
-      
-    
     <main class="col xs12">
       <router-outlet></router-outlet>
     </main>
-    <!-- Here goes footer-->
+
+    <app-desktop-footer class="col xs12 hide-below-md"></app-desktop-footer>
+    <app-mobile-footer class="col xs12 hide-above-md"></app-mobile-footer>
   </div>
 </div>
