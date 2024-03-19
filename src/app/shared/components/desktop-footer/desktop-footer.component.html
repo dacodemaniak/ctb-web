@@ -21,7 +21,11 @@
 
 
     <nav class="col xs4">
-        Menu footer
+        <ul>
+            <li *ngFor="let option of options">
+                <a [routerLink]="option.route" [title]="option.title">{{ option.label }}</a> 
+            </li>
+        </ul>
     </nav>
 
     <section class="col xs4">

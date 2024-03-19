@@ -5,6 +5,7 @@ import { MobileHeaderComponent } from './components/mobile-header/mobile-header.
 import { DesktopFooterComponent } from './components/desktop-footer/desktop-footer.component';
 import { MobileFooterComponent } from './components/mobile-footer/mobile-footer.component';
 import { UiModule } from '../ui/ui.module';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -15,13 +16,15 @@ import { UiModule } from '../ui/ui.module';
     MobileFooterComponent,
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule
   ],
   exports: [
     DesktopHeaderComponent,
     MobileHeaderComponent,
     DesktopFooterComponent,
     MobileFooterComponent,
+    RouterModule,
     UiModule
   ]
 })
