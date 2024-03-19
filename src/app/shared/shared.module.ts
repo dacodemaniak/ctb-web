@@ -4,6 +4,7 @@ import { DesktopHeaderComponent } from './components/desktop-header/desktop-head
 import { MobileHeaderComponent } from './components/mobile-header/mobile-header.component';
 import { DesktopFooterComponent } from './components/desktop-footer/desktop-footer.component';
 import { MobileFooterComponent } from './components/mobile-footer/mobile-footer.component';
+import { UiModule } from '../ui/ui.module';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { MobileFooterComponent } from './components/mobile-footer/mobile-footer.
     DesktopHeaderComponent,
     MobileHeaderComponent,
     DesktopFooterComponent,
-    MobileFooterComponent
+    MobileFooterComponent,
+    UiModule
   ]
 })
 export class SharedModule { }
