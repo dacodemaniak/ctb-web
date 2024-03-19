@@ -135,9 +135,35 @@ $web-theme: mat.define-light-theme((
 @include mat.all-component-themes($web-theme);
 
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap');
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { 
+  margin: 0; 
+  font-family: Poppins, sans-serif;
+  font-weight: 400;
+  font-size: 0.75em;
+
+  .light-typo {
+    font-family: inherit;
+    font-weight: 300;
+  }
+
+  .regular-typo {
+    font-family: inherit;
+    font-weight: 400;    
+  }
+
+  .semi-bold-typo {
+    font-family: inherit;
+    font-weight: 600;
+  }
+
+  .bold-typo {
+    font-family: inherit;
+    font-weight: 700;
+  }
+}
 
 // Import grid system
 @import './grid.scss';
