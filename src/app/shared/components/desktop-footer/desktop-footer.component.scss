@@ -47,4 +47,27 @@ footer {
         }
     }
 
+    section {
+        h3 {
+            margin-top: 0;
+            margin-left: 2em;
+            font-size: 1em;
+        }
+
+        ul {
+            list-style-type: none;
+            li {
+                display: inline-block;
+                margin-right: .5em;
+                height: 4.5em;
+                width: 4.5em;
+                img {
+                    //display: block;
+                    height: auto;
+                    max-width: 100%;
+                }
+            }
+        }
+
+    }
 }
