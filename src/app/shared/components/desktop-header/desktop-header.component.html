@@ -3,6 +3,10 @@
         <img src="assets/logos/ctb-logo.svg" alt="Centre Toulousain du Bénévolat - Logo">
     </figure>
     <nav class="col xs8">
-        Menu
+        <ul>
+            <li *ngFor="let option of options">
+                <a [routerLink]="option.route" [title]="option.title">{{ option.label }}</a> 
+            </li>
+        </ul>
     </nav>
 </header>
